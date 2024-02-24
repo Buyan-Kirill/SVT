@@ -3,28 +3,9 @@
 #include <cmath>
 #include <fstream>
 
-double u(double x)
+double f(double x)
 {
     return -30 * pow(x, 4);
-}
-
-void printer(std::vector<double> y)
-{
-    for (auto i: y) {
-        std::cout << i << ", ";
-    }
-    std::cout << std::endl << std::endl;
-}
-
-void mat_printer(std::vector<double> A, int N)
-{
-    for (int i = 0; i < N; i++) {
-        for (int j = 0; j < N; j++) {
-            std::cout << A[i * N + j] << ' ';
-        }
-        std::cout << std::endl;
-    }
-    std::cout << std::endl;
 }
 
 void progonka(std::vector<double> A, std::vector<double> f, std::vector<double>::iterator it)
@@ -45,16 +26,6 @@ void progonka(std::vector<double> A, std::vector<double> f, std::vector<double>:
     }
 }
 
-void mat_vec(const std::vector<double> &A, const std::vector<double> &x, std::vector<double> &y)
-{
-    for (size_t i = 0; i < x.size(); i++) {
-        y[i] = 0;
-        for (size_t j = 0; j < x.size(); j++) {
-            y[i] += A[i * x.size() + j] * x[j];
-        }
-    }
-}
-
 void fill_matrix(std::vector<double> &A, const int &N)
 {
     for (int i = 0; i < N; ++i) {
@@ -70,14 +41,14 @@ void fill_matrix(std::vector<double> &A, const int &N)
     }
 }
 
-void fill_right_part(std::vector<double> &f)
+void fill_right_part(std::vector<double> &f_vec)
 {
-    int N = f.size();
+    int N = f_vec.size();
     double h = 1. / (N + 1);
     for (int i = 1; i <= N; ++i) {
-        f[i - 1] = u(h * i) * h * h;
+        f_vec[i - 1] = f(h * i) * h * h;
     }
-    f[N - 1] += 1.;
+    f_vec[N - 1] += 1.;
 }
 
 int main()
@@ -85,17 +56,18 @@ int main()
     std::ofstream myfile;
     myfile.open ("output.txt");
     int n = 5;
+    double a = 0., b = 1.;
     for (int i = 0; i < 9; i++) {
-        std::vector<double> A(n * n), f(n), x(n + 2);
+        std::vector<double> A(n * n), f_vec(n), y(n + 2);
 
         fill_matrix(A, n);
-        fill_right_part(f);
+        fill_right_part(f_vec);
         
-        progonka(A, f, x.end() - 2);
-        x[0] = 0;
-        x[n + 1] = 1;
+        progonka(A, f_vec, y.end() - 2);
+        y[0] = a;
+        y[n + 1] = b;
   
-        for (auto i: x) {
+        for (auto i: y) {
             myfile << i << " ";
         }
         myfile << '\n';
