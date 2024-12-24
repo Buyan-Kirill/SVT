@@ -1,0 +1,1 @@
+/usr/bin/c++ -rdynamic CMakeFiles/main.dir/main.cpp.o -o main   -L/mnt/c/Users/AERO/Desktop/SVT/SVT4/INMOST/build  -Wl,-rpath,/mnt/c/Users/AERO/Desktop/SVT/SVT4/INMOST/build /mnt/c/Users/AERO/Desktop/SVT/SVT4/INMOST/build/libinmost.a 
