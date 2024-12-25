@@ -1,5 +1,0 @@
-/mnt/c/Users/AERO/Desktop/SVT/term2/task1/build/CMakeFiles/main.dir
-/mnt/c/Users/AERO/Desktop/SVT/term2/task1/build/CMakeFiles/mesh.dir
-/mnt/c/Users/AERO/Desktop/SVT/term2/task1/build/CMakeFiles/diffusion_fem.dir
-/mnt/c/Users/AERO/Desktop/SVT/term2/task1/build/CMakeFiles/edit_cache.dir
-/mnt/c/Users/AERO/Desktop/SVT/term2/task1/build/CMakeFiles/rebuild_cache.dir
